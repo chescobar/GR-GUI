@@ -1,0 +1,18 @@
+# Gambas Project File 3.0
+# Compiled with Gambas 3.8.4
+Title=G Radio V-1.0 Némesis
+Startup=FMain
+UseTerminal=1
+RedirectStderr=1
+Profiling=1
+Version=0.0.48
+Component=gb.image
+Component=gb.gtk
+Component=gb.form
+Component=gb.opengl
+Component=gb.gtk.opengl
+Environment="GB_GUI=gb.gtk3"
+TabSize=2
+Translate=1
+Language=es
+Packager=1

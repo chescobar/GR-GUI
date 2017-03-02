@@ -1,0 +1,107 @@
+' Gambas class file
+
+Public Sub _new()
+
+End
+
+Public Sub Form_Open()
+Try actualizarParrilla(ListaComerciales)
+End
+
+Public Sub actualizarParrilla(l As ListBox)
+
+Dim ruta As String
+
+Try ruta = User.home & "/.gradio/data/tmp/nacionalcarpetas"
+If Error Then Return
+ cargaContenido(ruta, l)
+
+End
+
+
+Public Sub actualizarParrilla2(l As ListBox)
+
+Dim ruta As String
+
+Try ruta = User.home & "/.gradio/data/tmp/nacionaltmp"
+If Error Then Return
+ cargaContenido(ruta, l)
+
+End
+
+
+Public Sub Button2_Click()
+Shell "~/.gradio/bin/cargacarpetanacional.sh" Wait
+Try actualizarParrilla2(Nacionales)
+End
+
+Private Sub cargaContenido(ruta As String, l As ListBox)
+
+  Dim linea As New String[]
+  Dim a As Integer
+
+  
+  Try linea = Split(File.Load(ruta), "\n")
+ 'If Error Then Return
+  l.Clear()
+  For a = 0 To linea.count - 2
+    l.Add(linea[a])
+  Next
+End
+
+Public Sub Borrar_Click()
+  Dim posicion As Integer
+  posicion = ListaComerciales.Index
+  Try ListaComerciales.Remove(posicion)
+End
+
+
+Public Sub Insertar_Click()
+  Dim Comerinsert As String
+  If Nacionales.Text = "" Then
+      Message.Info("Seleccione la carpeta a insertar")
+  Else
+  Comerinsert = Nacionales.Text 
+  ListaComerciales.Add(Comerinsert)
+  Endif
+End
+
+
+Public Sub ButtonSave_Click()
+Dim ruta As String
+Dim Sobreescribir As Integer
+Dim Ncomerciales As String
+' Save the ListBox content to a text file
+ruta = User.home & "/.gradio/data/tmp/nacionalcarpetas"
+ ' Dialog.Filter = ["*.lst", "Lists", "*.txt", "Text Files", "*", "All Files"]
+  'If Dialog.SaveFile() Then Return
+
+Shell "grep -c $ " & ruta To Ncomerciales
+If Ncomerciales = "" Then 
+  
+Try File.Save(ruta, ListaComerciales.List.Join("\n") & "\n")
+
+Else
+  
+Sobreescribir = Message.Question("Va a sobre escribir la lista de carpetas de Artistas Nacionales", "Aceptar", "Cancelar")
+ If Sobreescribir = 1 Then
+Try File.Save(ruta, ListaComerciales.List.Join("\n") & "\n")
+Message.Info("Se actualizó las carpetas de artistas nacionales")
+
+Else
+  
+  Message.Info("No se actualizaron las carpetas de artistas nacionales")
+Endif
+
+Endif
+Catch
+Message.Info("No fue posible grabar en:\\n" & ruta & "\\n" & Error.Text)
+
+   'Shell "~/.gradio/bin/grabarcomercialesg3.sh"
+  ' Quit
+End
+
+Public Sub Button20_Click()
+  Try actualizarParrilla(ListaComerciales)
+End
+

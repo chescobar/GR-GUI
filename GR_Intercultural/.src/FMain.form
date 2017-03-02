@@ -1,0 +1,59 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  MoveScaled(0,0,110,49)
+  Text = ("GR - Configurar Intercultural")
+  Icon = Picture["gradio.png"]
+  Resizable = False
+  { Insertar Button
+    MoveScaled(1,6,14,5)
+    ToolTip = ("Insertar Carpeta Seleccionada")
+    Picture = Picture["icon:/22/jump"]
+  }
+  { Borrar Button
+    MoveScaled(1,11,14,6)
+    ToolTip = ("Borrar seleccionado")
+    Picture = Picture["icon:/22/trash"]
+  }
+  { ButtonSave Button
+    MoveScaled(1,35,14,13)
+    Background = &HFF0000&
+    ToolTip = ("Grabar los cambios")
+    Picture = Picture["icon:/64/save"]
+  }
+  { Panel2 Panel
+    MoveScaled(16,2,93,5)
+    Arrangement = Arrange.Horizontal
+    Border = Border.Raised
+    { Intercultural ListBox
+      MoveScaled(0.8571,0,92,4)
+      Font = Font["-1"]
+      Background = &HB28FBF&
+      ToolTip = ("Seleccione una carpeta a insertar")
+      Expand = True
+      Border = False
+    }
+  }
+  { Panel1 Panel
+    MoveScaled(16,8,93,40)
+    Arrangement = Arrange.Horizontal
+    Border = Border.Raised
+    { ListaComerciales ListBox
+      MoveScaled(0,0,93,40)
+      Font = Font["Bold,-3"]
+      Background = &HB28FBF&
+      ToolTip = ("Lista de carpetas")
+      Border = False
+    }
+  }
+  { Button20 Button
+    MoveScaled(1,22,14,13)
+    ToolTip = ("Revisar lista de carpetas")
+    Picture = Picture["icon:/48/replace"]
+  }
+  { Button2 Button
+    MoveScaled(1,1,14,5)
+    ToolTip = ("Seleccionar Carpeta a insertar")
+    Picture = Picture["icon:/22/open"]
+  }
+}
